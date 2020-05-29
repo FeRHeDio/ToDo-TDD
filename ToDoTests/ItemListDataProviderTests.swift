@@ -13,12 +13,20 @@ class ItemListDataProviderTests: XCTestCase {
     
     var sut: ItemListDataProvider!
     var tableView: UITableView!
+    var controller: ItemListViewController!
 
     override func setUp() {
+        super.setUp()
+        
         sut = ItemListDataProvider()
         sut.itemManager = ItemManager()
         
-        tableView = UITableView()
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        controller = sb.instantiateViewController(withIdentifier: "ItemListViewController") as? ItemListViewController
+        
+        controller.loadViewIfNeeded()
+        
+        tableView = controller.tableView
         tableView.dataSource = sut
     }
 
@@ -62,5 +70,32 @@ class ItemListDataProviderTests: XCTestCase {
         XCTAssertTrue(cell is ItemCell)
     }
     
+    func test_CellForRow_DequeuesCellFromTableView() {
+        
+        let mockTable = MockTableView()
+        mockTable.dataSource = sut
+        mockTable.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
+        
+        sut.itemManager?.add(ToDoItem(title: "Some"))
+        mockTable.reloadData()
+        
+        _ = mockTable.cellForRow(at: IndexPath(row: 0, section: 0))
+            
+        XCTAssertTrue(mockTable.cellGotDequed)
+    }
+}
 
+
+
+
+extension ItemListDataProviderTests {
+    
+    class MockTableView: UITableView {
+        var cellGotDequed = false
+        
+        override func dequeueReusableCell(withIdentifier identifier: String, for indexPath: IndexPath) -> UITableViewCell {
+            cellGotDequed = true
+            return super.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        }
+    }
 }
