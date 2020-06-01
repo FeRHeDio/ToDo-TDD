@@ -84,6 +84,7 @@ class ItemListDataProviderTests: XCTestCase {
         XCTAssertTrue(mockTable.cellGotDequed)
     }
     
+    
     func test_CellForRow_CallsConfigCell() {
         
         let mockTableView = MockTableView()
@@ -95,9 +96,9 @@ class ItemListDataProviderTests: XCTestCase {
         sut.itemManager?.add(item)
         mockTableView.reloadData()
         
-        mockTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! MockItemCell
+        let cell = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! MockItemCell
         
-        XCTAssertTrue(mockTableView.cellGotDequed)
+        XCTAssertTrue(cell.configCellGotCalled)
     }
 }
 
