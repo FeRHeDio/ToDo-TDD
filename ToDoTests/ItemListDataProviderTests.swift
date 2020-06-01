@@ -18,6 +18,7 @@ class ItemListDataProviderTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
+        
         sut = ItemListDataProvider()
         sut.itemManager = ItemManager()
         
@@ -28,6 +29,7 @@ class ItemListDataProviderTests: XCTestCase {
         
         tableView = controller.tableView
         tableView.dataSource = sut
+        tableView.delegate = sut
     }
 
     override func tearDown() {
@@ -61,7 +63,6 @@ class ItemListDataProviderTests: XCTestCase {
     }
     
     func test_CellForRow_ReturnsItemCell() {
-        
         sut.itemManager?.add(ToDoItem(title: "Foo"))
         tableView.reloadData()
         
@@ -71,10 +72,7 @@ class ItemListDataProviderTests: XCTestCase {
     }
     
     func test_CellForRow_DequeuesCellFromTableView() {
-        
-        let mockTable = MockTableView()
-        mockTable.dataSource = sut
-        mockTable.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
+        let mockTable = MockTableView.mockTableView(withDataSource: sut)
         
         sut.itemManager?.add(ToDoItem(title: "Some"))
         mockTable.reloadData()
@@ -86,42 +84,78 @@ class ItemListDataProviderTests: XCTestCase {
     
     
     func test_CellForRow_CallsConfigCell() {
-        
-        let mockTableView = MockTableView()
-        mockTableView.dataSource = sut
-        
-        mockTableView.register(MockItemCell.self, forCellReuseIdentifier: "ItemCell")
-        
+        let mockTableView = MockTableView.mockTableView(withDataSource: sut)
         let item = ToDoItem(title: "First")
+        
         sut.itemManager?.add(item)
         mockTableView.reloadData()
         
         let cell = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! MockItemCell
         
-        XCTAssertTrue(cell.configCellGotCalled)
+        XCTAssertEqual(cell.catchedItem, item)
     }
+    
+    func test_CellForRow_Section2_CallConfigCellWithDoneItem() {
+        let mockTableView = MockTableView.mockTableView(withDataSource: sut)
+        
+        let first = ToDoItem(title: "First")
+        sut.itemManager?.add(first)
+        
+        let second = ToDoItem(title: "Second")
+        sut.itemManager?.add(second)
+        
+        sut.itemManager?.checkItem(at: 1)
+        
+        mockTableView.reloadData()
+        
+        let cell = mockTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! MockItemCell
+        XCTAssertEqual(cell.catchedItem, second)
+    }
+    
+    func test_DeleteButton_InFirstSection_ShowsTitleCheck() {
+        let deleteButtonTitle = tableView.delegate?.tableView?(tableView, titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0, section: 0))
+        
+        XCTAssertEqual(deleteButtonTitle, "Check")
+    }
+    
+    func test_DeleteButton_InSecondSection_ShowsTitleUncheck() {
+        let deleteButtonTitle = tableView.delegate?.tableView?(tableView, titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0, section: 1))
+        
+        XCTAssertEqual(deleteButtonTitle, "Uncheck")
+    }
+    
 }
-
-
 
 
 extension ItemListDataProviderTests {
     
     class MockTableView: UITableView {
+        
         var cellGotDequed = false
+        
+        class func mockTableView(withDataSource dataSource: UITableViewDataSource) -> MockTableView {
+            
+            let mockTableView = MockTableView(frame: CGRect(x: 0, y: 0, width: 320, height: 480), style: .plain)
+            
+            mockTableView.dataSource = dataSource
+            mockTableView.register(MockItemCell.self, forCellReuseIdentifier: "ItemCell")
+            
+            return mockTableView
+            
+        }
         
         override func dequeueReusableCell(withIdentifier identifier: String, for indexPath: IndexPath) -> UITableViewCell {
             cellGotDequed = true
             return super.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         }
+        
     }
     
     class MockItemCell: ItemCell {
-        var configCellGotCalled = false
+        var catchedItem: ToDoItem?
         
         override func configCell(with item: ToDoItem) {
-            configCellGotCalled = true
+            catchedItem = item
         }
-        
     }
 }
