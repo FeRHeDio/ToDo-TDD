@@ -9,7 +9,7 @@
 import XCTest
 @testable import ToDo
 
-class ItemManagerTests: XCTestCase {
+class ItemManagerTest: XCTestCase {
     
     var sut: ItemManager!
 
@@ -54,19 +54,19 @@ class ItemManagerTests: XCTestCase {
     }
     
     func test_CheckItemAt_RemovesItemFromToDoItems() {
-        let first = ToDoItem(title: "First")
-        let second = ToDoItem(title: "Second")
+        let first = ToDoItem(title: "Learn TDD")
+        let second = ToDoItem(title: "Learn SwiftUI")
     
         sut.add(first)
         sut.add(second)
         
         sut.checkItem(at: 0)
         
-        XCTAssertEqual(sut.item(at: 0).title, "Second")
+        XCTAssertEqual(sut.item(at: 0).title, "Learn SwiftUI")
     }
     
     func test_DoneItemAt_ReturnsCheckedItem() {
-        let item = ToDoItem(title: "Something")
+        let item = ToDoItem(title: "Learn SwiftUI")
         sut.add(item)
         
         sut.checkItem(at: 0)
@@ -75,9 +75,9 @@ class ItemManagerTests: XCTestCase {
         XCTAssertEqual(returnedItem.title, item.title)
     }
     
-    func test_Items_RemoveAll_ShouldCountZero() {
-        sut.add(ToDoItem(title: "Foo"))
-        sut.add(ToDoItem(title: "Bar"))
+    func test_Items_RemoveAll_ShouldBeZero() {
+        sut.add(ToDoItem(title: "Learn SwiftUI"))
+        sut.add(ToDoItem(title: "Learn TDD"))
         sut.checkItem(at: 0)
         
         XCTAssertEqual(sut.toDoCount, 1)
@@ -89,9 +89,9 @@ class ItemManagerTests: XCTestCase {
         XCTAssertEqual(sut.doneCount, 0)
     }
     
-    func test_Add_WhenItemIsAlreadyAdded_DoesNotIncreaseCount(){
-        sut.add(ToDoItem(title: "Foo"))
-        sut.add(ToDoItem(title: "Foo"))
+    func test_Add_WhenItemExists_DoesNotCount(){
+        sut.add(ToDoItem(title: "Learn SwiftUI"))
+        sut.add(ToDoItem(title: "Learn SwiftUI"))
         
         XCTAssertEqual(sut.toDoCount, 1)
     }

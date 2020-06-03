@@ -9,20 +9,20 @@
 import XCTest
 @testable import ToDo
 
-class ItemListDataProviderTests: XCTestCase {
+class ItemListDataSourceTest: XCTestCase {
     
-    var sut: ItemListDataProvider!
+    var sut: ItemListDataSource!
     var tableView: UITableView!
-    var controller: ItemListViewController!
+    var controller: ItemListVC!
 
     override func setUp() {
         super.setUp()
         
-        sut = ItemListDataProvider()
+        sut = ItemListDataSource()
         sut.itemManager = ItemManager()
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        controller = sb.instantiateViewController(withIdentifier: "ItemListViewController") as? ItemListViewController
+        controller = sb.instantiateViewController(withIdentifier: "ItemListVC") as? ItemListVC
         
         controller.loadViewIfNeeded()
         
@@ -71,7 +71,7 @@ class ItemListDataProviderTests: XCTestCase {
     }
     
     func test_CellForRow_DequeuesCellFromTableView() {
-        let mockTable = MockTableView.mockTableView(withDataSource: sut)
+        let mockTable = MockTV.mockTableView(withDataSource: sut)
         
         sut.itemManager?.add(ToDoItem(title: "Some"))
         mockTable.reloadData()
@@ -83,7 +83,7 @@ class ItemListDataProviderTests: XCTestCase {
     
     
     func test_CellForRow_CallsConfigCell() {
-        let mockTableView = MockTableView.mockTableView(withDataSource: sut)
+        let mockTableView = MockTV.mockTableView(withDataSource: sut)
         let item = ToDoItem(title: "First")
         
         sut.itemManager?.add(item)
@@ -95,7 +95,7 @@ class ItemListDataProviderTests: XCTestCase {
     }
     
     func test_CellForRow_Section2_CallConfigCellWithDoneItem() {
-        let mockTableView = MockTableView.mockTableView(withDataSource: sut)
+        let mockTableView = MockTV.mockTableView(withDataSource: sut)
         
         let first = ToDoItem(title: "First")
         sut.itemManager?.add(first)
@@ -153,20 +153,20 @@ class ItemListDataProviderTests: XCTestCase {
 }
 
 
-extension ItemListDataProviderTests {
+extension ItemListDataSourceTest {
     
-    class MockTableView: UITableView {
+    class MockTV: UITableView {
         
         var cellGotDequed = false
         
-        class func mockTableView(withDataSource dataSource: UITableViewDataSource) -> MockTableView {
+        class func mockTableView(withDataSource dataSource: UITableViewDataSource) -> MockTV {
             
-            let mockTableView = MockTableView(frame: CGRect(x: 0, y: 0, width: 320, height: 480), style: .plain)
+            let mockTV = MockTV(frame: CGRect(x: 0, y: 0, width: 320, height: 480), style: .plain)
             
-            mockTableView.dataSource = dataSource
-            mockTableView.register(MockItemCell.self, forCellReuseIdentifier: "ItemCell")
+            mockTV.dataSource = dataSource
+            mockTV.register(MockItemCell.self, forCellReuseIdentifier: "ItemCell")
             
-            return mockTableView
+            return mockTV
             
         }
         
@@ -180,7 +180,7 @@ extension ItemListDataProviderTests {
     class MockItemCell: ItemCell {
         var catchedItem: ToDoItem?
         
-        override func configCell(with item: ToDoItem) {
+        override func configCell(with item: ToDoItem, checked: Bool = false) {
             catchedItem = item
         }
     }

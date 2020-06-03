@@ -10,7 +10,7 @@ import XCTest
 @testable import ToDo
 import CoreLocation
 
-class LocationTests: XCTestCase {
+class LocationTest: XCTestCase {
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -82,7 +82,7 @@ class LocationTests: XCTestCase {
     
     func test_CreateCompletObject() {
         self.measure {
-            _ = ToDoItem(title: "Algún Item", itemDescription: "Este es un ítem completo teóricamente", timestamp: 12.35, location: Location(name: "Coordinate1", coordinate: CLLocationCoordinate2D(latitude: 924.44, longitude: 129.34)))
+            _ = ToDoItem(title: "Algún Item", itemDescription: "This is a complete item in theory", timestamp: 12.35, location: Location(name: "Coordinate1", coordinate: CLLocationCoordinate2D(latitude: 924.44, longitude: 129.34)))
         }
     }
     

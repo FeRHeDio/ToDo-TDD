@@ -9,14 +9,14 @@
 import XCTest
 @testable import ToDo
 
-class ItemListViewControllerTest: XCTestCase {
+class ItemListVCTest: XCTestCase {
 
-    var sut: ItemListViewController!
+    var sut: ItemListVC!
     
     override func setUp() {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "ItemListViewController")
-        sut = (vc as! ItemListViewController)
+        let vc = sb.instantiateViewController(withIdentifier: "ItemListVC")
+        sut = (vc as! ItemListVC)
         sut.loadViewIfNeeded()
     }
 
@@ -28,15 +28,15 @@ class ItemListViewControllerTest: XCTestCase {
     }
 
     func test_LoadingView_SetsTableViewDataSource() {
-        XCTAssertTrue(sut.tableView.dataSource is ItemListDataProvider)
+        XCTAssertTrue(sut.tableView.dataSource is ItemListDataSource)
     }
     
     func test_LoadingView_SetsTableViewDelegate() {
-        XCTAssertTrue(sut.tableView.delegate is ItemListDataProvider)
+        XCTAssertTrue(sut.tableView.delegate is ItemListDataSource)
     }
     
     func test_LoadingView_DataSourceAndDelegate_AreTheSame() {
-        XCTAssertEqual(sut.tableView.dataSource as? ItemListDataProvider,
-                       sut.tableView.delegate as? ItemListDataProvider)
+        XCTAssertEqual(sut.tableView.dataSource as? ItemListDataSource,
+                       sut.tableView.delegate as? ItemListDataSource)
     }
 }

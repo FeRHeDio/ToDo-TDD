@@ -10,7 +10,7 @@ import UIKit
 
 enum Section: Int { case toDo, done }
 
-class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate {
+class ItemListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var itemManager: ItemManager?
     
