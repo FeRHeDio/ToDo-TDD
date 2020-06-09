@@ -85,5 +85,61 @@
             </objects>
             <point key="canvasLocation" x="134.78260869565219" y="77.678571428571431"/>
         </scene>
+        <!--DetailVC-->
+        <scene sceneID="tSh-22-NHY">
+            <objects>
+                <viewController storyboardIdentifier="DetailVC" id="OOV-8I-KLN" customClass="DetailVC" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8XS-bi-zfe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="87" translatesAutoresizingMaskIntoConstraints="NO" id="1HM-uX-k5y">
+                                <rect key="frame" x="140.5" y="276.5" width="133.5" height="343"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETd-1N-CmA">
+                                        <rect key="frame" x="50" y="0.0" width="33.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcg-bC-rQU">
+                                        <rect key="frame" x="31" y="107.5" width="71.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfq-Ma-jsy">
+                                        <rect key="frame" x="11" y="215" width="111.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27y-4L-Bi1">
+                                        <rect key="frame" x="0.0" y="322.5" width="133.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="1HM-uX-k5y" firstAttribute="centerX" secondItem="8XS-bi-zfe" secondAttribute="centerX" id="gWo-Iy-3AW"/>
+                            <constraint firstItem="1HM-uX-k5y" firstAttribute="centerY" secondItem="8XS-bi-zfe" secondAttribute="centerY" id="rbN-I9-UN5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="meU-h5-7tT"/>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="27y-4L-Bi1" id="vjt-1t-aau"/>
+                        <outlet property="dueDateLabel" destination="Dcg-bC-rQU" id="ijK-QM-etR"/>
+                        <outlet property="locationLabel" destination="kfq-Ma-jsy" id="dqa-CV-lpJ"/>
+                        <outlet property="titleLabel" destination="ETd-1N-CmA" id="k2f-qq-K9o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kdp-od-kkv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950.72463768115949" y="77.678571428571431"/>
+        </scene>
     </scenes>
 </document>

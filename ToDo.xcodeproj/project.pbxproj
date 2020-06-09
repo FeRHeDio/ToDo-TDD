@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76284A4F248FAFEB0092B2BF /* DetailVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76284A4E248FAFEB0092B2BF /* DetailVCTests.swift */; };
+		76284A51248FB1A30092B2BF /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76284A50248FB1A30092B2BF /* DetailVC.swift */; };
 		764BC72C2472A8390042BE97 /* ToDoItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764BC72B2472A8390042BE97 /* ToDoItemTest.swift */; };
 		764BC72E2472A9110042BE97 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764BC72D2472A9110042BE97 /* ToDoItem.swift */; };
 		764BC7302472B0640042BE97 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764BC72F2472B0640042BE97 /* Location.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		76284A4E248FAFEB0092B2BF /* DetailVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVCTests.swift; sourceTree = "<group>"; };
+		76284A50248FB1A30092B2BF /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		764BC72B2472A8390042BE97 /* ToDoItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemTest.swift; sourceTree = "<group>"; };
 		764BC72D2472A9110042BE97 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		764BC72F2472B0640042BE97 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 				76E1ACB624709ED90084D04A /* Assets.xcassets */,
 				76E1ACB824709ED90084D04A /* LaunchScreen.storyboard */,
 				76E1ACBB24709ED90084D04A /* Info.plist */,
+				76284A50248FB1A30092B2BF /* DetailVC.swift */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 				76E1ACC624709EDA0084D04A /* Info.plist */,
 				76F9212B247E8FB500FCC318 /* ItemListDataSourceTest.swift */,
 				76DCD4B22487C79C00870F11 /* ItemCellTest.swift */,
+				76284A4E248FAFEB0092B2BF /* DetailVCTests.swift */,
 			);
 			path = ToDoTests;
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 				766897B0247FD99300F997C8 /* ItemCell.swift in Sources */,
 				76E1ACAE24709ED90084D04A /* AppDelegate.swift in Sources */,
 				764BC7302472B0640042BE97 /* Location.swift in Sources */,
+				76284A51248FB1A30092B2BF /* DetailVC.swift in Sources */,
 				764BC72E2472A9110042BE97 /* ToDoItem.swift in Sources */,
 				76F9212A247E7F7400FCC318 /* ItemListDataSource.swift in Sources */,
 				7676D5C5247B14BC001C3238 /* ItemManager.swift in Sources */,
@@ -277,6 +284,7 @@
 				76F9212C247E8FB500FCC318 /* ItemListDataSourceTest.swift in Sources */,
 				7676D5C1247B13BF001C3238 /* ItemManagerTest.swift in Sources */,
 				764BC7322472B28F0042BE97 /* LocationTest.swift in Sources */,
+				76284A4F248FAFEB0092B2BF /* DetailVCTests.swift in Sources */,
 				76DC12CF247E772E0031A74D /* ItemListVCTest.swift in Sources */,
 				764BC72C2472A8390042BE97 /* ToDoItemTest.swift in Sources */,
 			);

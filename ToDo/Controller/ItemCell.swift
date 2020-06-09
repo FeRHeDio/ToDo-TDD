@@ -21,32 +21,18 @@ class ItemCell: UITableViewCell {
     }()
     
     func configCell(with item: ToDoItem, checked: Bool = false) {
-        
-        
         if checked {
-            let attributedString = NSAttributedString(string: item.title, attributes: [
-                
-                
-                NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
-            
+            let attributedString = NSAttributedString(string: item.title, attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue])
             titleLabel.attributedText = attributedString
             locationLabel.text = nil
             dateLabel.text = nil
         } else {
             titleLabel.text = item.title
-            
             locationLabel.text = item.location?.name ?? ""
-            
             if let timeStamp = item.timestamp {
                 let date = Date(timeIntervalSince1970: timeStamp)
-                
                 dateLabel.text = dateFormatter.string(from: date)
             }
         }
-        
-        
-      
-    
     }
-
 }
